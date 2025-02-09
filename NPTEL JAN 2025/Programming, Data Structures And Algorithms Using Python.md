@@ -9,8 +9,8 @@ def remdup(l):
             result.append(num) 
     return result[::-1] 
 def splitsum(l): 
-    pos = sum(x**2 for x in 1 if x > 0) 
-    neg = sum(x**3 for x in 1 if x < 0) 
+    pos = sum(x**2 for x in l if x > 0) 
+    neg = sum(x**3 for x in l if x < 0) 
     return [pos, neg] 
 def matrixflip(m, d): 
     if d == 'h': 
