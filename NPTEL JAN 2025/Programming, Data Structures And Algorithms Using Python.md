@@ -4,7 +4,7 @@
 ```
 def remdup(l): 
     result = [] 
-    for num in reversed (1): 
+    for num in reversed (l): 
         if num not in result: 
             result.append(num) 
     return result[::-1] 
