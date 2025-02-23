@@ -19,3 +19,48 @@ def matrixflip(m, d):
         return m[::-1] 
     return m
 ```
+
+# Week 4
+```
+import sys
+
+def main():
+    grade_points = {"A": 10, "AB": 9, "B": 8, "BC": 7, "C": 6, "CD": 5, "D": 4}
+    
+    students = {}
+    grades = {}
+    
+    section = None
+    for line in sys.stdin:
+        line = line.strip()
+        if line == "EndOfInput":
+            break
+        elif line == "Courses":
+            section = "Courses"
+        elif line == "Students":
+            section = "Students"
+        elif line == "Grades":
+            section = "Grades"
+        else:
+            if section == "Students":
+                roll_number, name = line.split("~")
+                students[roll_number] = name
+                grades[roll_number] = []
+            elif section == "Grades":
+                _, _, _, roll_number, grade = line.split("~")
+                if roll_number in grades:
+                    grades[roll_number].append(grade_points[grade])
+    
+    result = []
+    for roll_number in sorted(students.keys()):
+        if grades[roll_number]:
+            gpa = round(sum(grades[roll_number]) / len(grades[roll_number]), 2)
+        else:
+            gpa = 0
+        result.append(f"{roll_number}~{students[roll_number]}~{gpa}")
+    
+    print("\n".join(result))
+
+if __name__ == "__main__":
+    main()
+```
