@@ -18,3 +18,25 @@ f4 :: [Int] -> [Int]
 f4 [] = []
 f4 (x:xs) = x : f4 (dropWhile (== x) xs)
 ```
+
+# Week 7
+
+```
+import System.IO
+
+main :: IO ()
+main = do
+    hSetBuffering stdout NoBuffering  -- Ensures immediate output
+    processInput 0
+
+processInput :: Int -> IO ()
+processInput sumSoFar = do
+    input <- getLine
+    if null input
+        then return ()  -- Exit on blank line
+        else do
+            let num = read input :: Int
+                newSum = sumSoFar + num
+            print newSum
+            processInput newSum
+```
