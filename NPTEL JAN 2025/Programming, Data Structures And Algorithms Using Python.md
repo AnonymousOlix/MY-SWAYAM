@@ -64,3 +64,39 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+# Week 8
+
+```
+def min_dragon_hunting_distance(R, C, K, D, dragons):
+    # Sort dragons by row index
+    dragons.sort()
+
+    # Distance DP table: mindist[i][j] represents minimum distance to kill j dragons ending at dragon i
+    INF = float('inf')
+    dp = [[INF] * (K + 1) for _ in range(D)]
+
+    # Base case: killing the first dragon from (0,0)
+    for i in range(D):
+        dp[i][1] = abs(dragons[i][0] - 0) + abs(dragons[i][1] - 0)
+
+    # Fill DP table for j dragons
+    for j in range(2, K + 1):
+        for i in range(D):  # Ending dragon
+            for x in range(i):  # Previous dragon
+                cost = abs(dragons[i][0] - dragons[x][0]) + abs(dragons[i][1] - dragons[x][1])
+                dp[i][j] = min(dp[i][j], dp[x][j - 1] + cost)
+
+    # Find the minimum distance to kill exactly K dragons
+    result = min(dp[i][K] for i in range(K - 1, D))
+
+    return result
+
+
+# Read input
+R, C, K, D = map(int, input().split())
+dragons = [tuple(map(int, input().split())) for _ in range(D)]
+
+# Compute and print result
+print(min_dragon_hunting_distance(R, C, K, D, dragons))
+```
