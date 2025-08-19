@@ -5,21 +5,19 @@
 # Programming Assignment 1
 
 ```bash
-if(n1 < n2)
-    {
-        if(n1 < n3)
-            printf("%d is the smallest number.", n1);
-        else
-            printf("%d is the smallest number.", n3);
-    }
-    else
-    {
-        if(n2 < n3)
-            printf("%d is the smallest number.", n2);
-        else
-            printf("%d is the smallest number.", n3);
+int sum = 0;
+    for (int i = 1; i <= N / 2; i++) {
+        if (N % i == 0) {
+            sum += i;  // add proper divisor
+        }
     }
 
+    if (sum == N) {
+        printf("%d is a perfect number.", N);
+    } else {
+        printf("%d is not a perfect number.", N);
+    }
+    
     return 0;
 }
 ```
@@ -27,23 +25,23 @@ if(n1 < n2)
 # Programming Assignment 2
 
 ```bash
-// Check triangle validity
-    if (a + b <= c || a + c <= b || b + c <= a) {
-        printf("Triangle is not possible");
-    } 
-    else if (a*a == b*b + c*c || b*b == a*a + c*c || c*c == a*a + b*b) {
-        printf("Right-angle Triangle");
+int count = 0;
+    int temp = N;
+    
+    if (temp == 0) {
+        count = 1;  // zero has 1 digit
+    } else {
+        if (temp < 0) {
+            temp = -temp;  // handle negative numbers
+        }
+        while (temp > 0) {
+            temp /= 10;
+            count++;
+        }
     }
-    else if (a == b && b == c) {
-        printf("Equilateral Triangle");
-    }
-    else if (a == b || b == c || a == c) {
-        printf("Isosceles Triangle");
-    }
-    else {
-        printf("Scalene Triangle");
-    }
-
+    
+    printf("The number %d contains %d digits.", N, count);
+    
     return 0;
 }
 ```
@@ -51,24 +49,27 @@ if(n1 < n2)
 # Programming Assignment 3
 
 ```bash
-fact = 1;   // Initialize factorial
-    int i = 1;
-    while (i <= n) {
-        fact = fact * i;
-        i++;
+if (N > 0 && (N & (N - 1)) == 0) {
+        printf("%d is a number that can be expressed as power of 2.", N);
+    } else {
+        printf("%d cannot be expressed as power of 2.", N);
     }
-    printf("The Factorial of %d is : %ld", n, fact);
+
+    return 0;
 }
 ```
 
 # Programming Assignment 4
 
 ```bash
-for(int i = 2; i <= N; i += 2) {
-        sum += i;
+for (int i = N; i >= 1; i--) {
+        for (int j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
     }
     
-    printf("Sum = %d", sum);
+    return 0;
 }
 ```
 
